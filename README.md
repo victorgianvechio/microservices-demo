@@ -130,26 +130,6 @@ Built with Vue.js and Quasar.
 
 ---
 
-# Project Structure
-
-project-root
-│
-├── docker-compose.yml
-│
-├── frontend
-│ └── Quasar application
-│
-└── services
-├── api-service
-│
-├── order-service
-│
-├── payment-service
-│
-└── notification-service
-
-Each service runs independently and communicates through RabbitMQ events.
-
 # Running the Project
 
 Make sure you have installed **Docker**

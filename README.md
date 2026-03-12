@@ -131,3 +131,52 @@ Built with Vue.js and Quasar.
 ---
 
 # Project Structure
+
+project-root
+│
+├── docker-compose.yml
+│
+├── frontend
+│ └── Quasar application
+│
+└── services
+├── api-service
+│
+├── order-service
+│
+├── payment-service
+│
+└── notification-service
+
+Each service runs independently and communicates through RabbitMQ events.
+
+# Running the Project
+
+Make sure you have installed **Docker**
+
+Then run:
+
+```bash
+docker compose up --build
+```
+
+After the containers start, the services will be available.
+
+Frontend
+
+```bash
+http://localhost:9000
+```
+
+RabbitMQ Management UI
+
+```bash
+http://localhost:15672
+```
+
+Default credentials:
+
+```bash
+user: guest
+password: guest
+```

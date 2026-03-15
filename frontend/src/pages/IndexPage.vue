@@ -33,16 +33,3 @@ async function createOrder() {
 
 }
 </script>
-
-<!-- <script setup>
-import { ref } from 'vue'
-
-const notifications = ref(0)
-
-async function createOrder() {
-  console.log('Criando pedido...')
-  await fetch('http://localhost:3000/orders', {
-    method: 'POST',
-  })
-}
-</script> -->

@@ -1,22 +1,27 @@
 # C4 - Context Diagram
 
-Este diagrama mostra como os usuários interagem com o sistema e
-quais sistemas externos estão envolvidos.
+Este diagrama mostra como os usuários interagem com o sistema e quais
+sistemas externos estão envolvidos.
+
+O objetivo deste diagrama é apresentar a visão de mais alto nível da
+arquitetura, sem detalhar os microsserviços internos.
 
 ```mermaid
 flowchart LR
 
-User[Usuário] --> Frontend[Frontend Quasar]
+User[Usuário]
 
-Frontend --> API[API Service]
+Frontend[Frontend<br>Vue3 + Quasar]
 
-API --> Order[Order Service]
-Order --> Payment[Payment Service]
+System[Sistema de Pedidos<br>Plataforma de processamento de pedidos]
 
-Order --> Rabbit[(RabbitMQ)]
-Payment --> Rabbit
+PaymentExt[Serviço Externo de Pagamento]
 
-Rabbit --> Notification[Notification Service]
+User --> Frontend
 
-Notification --> Frontend
+Frontend --> System
+
+System --> PaymentExt
+
+System --> Frontend
 ```

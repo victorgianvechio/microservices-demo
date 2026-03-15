@@ -11,9 +11,9 @@ flowchart LR
 
 User[Usuário]
 
-Frontend[Frontend]
+Frontend[Aplicação Web]
 
-System[Sistema de Pedidos]
+System[Sistema de Processamento de Pedidos]
 
 PaymentExt[Serviço Externo de Pagamento]
 

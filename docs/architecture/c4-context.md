@@ -11,9 +11,9 @@ flowchart LR
 
 User[Usuário]
 
-Frontend[Frontend<br>Vue3 + Quasar]
+Frontend[Frontend]
 
-System[Sistema de Pedidos<br>Plataforma de processamento de pedidos]
+System[Sistema de Pedidos]
 
 PaymentExt[Serviço Externo de Pagamento]
 

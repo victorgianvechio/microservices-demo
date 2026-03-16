@@ -10,20 +10,27 @@ flowchart LR
 
 Client[API Service]
 
+Rabbit[(RabbitMQ)]
+DB[(Order Database)]
+
 subgraph Order Service
 
-OrderController[Order Controller<br>Express Route]
+Controller[Order Controller]
 
-OrderService[Order Service<br>Business Logic]
+Service[Order Service]
 
-OrderEventPublisher[Order Event Publisher]
+Repository[Order Repository]
+
+Publisher[Order Event Publisher]
 
 end
 
-Rabbit[(RabbitMQ<br>Message Broker)]
+Client --> Controller
+Controller --> Service
 
-Client --> OrderController
-OrderController --> OrderService
-OrderService --> OrderEventPublisher
-OrderEventPublisher -->|OrderCreated| Rabbit
+Service --> Repository
+Repository --> DB
+
+Service --> Publisher
+Publisher -->|OrderCreated| Rabbit
 ```

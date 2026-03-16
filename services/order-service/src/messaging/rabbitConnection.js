@@ -8,22 +8,14 @@ async function connectRabbit() {
 
   channel = await connection.createChannel()
 
-  await channel.assertQueue("order_created")
-
   console.log("Order-service conectado ao RabbitMQ")
 }
 
-function publishOrderCreated(order) {
-
-  channel.sendToQueue(
-    "order_created",
-    Buffer.from(JSON.stringify(order))
-  )
-
-  console.log("Evento order_created publicado:", order)
+function getChannel() {
+  return channel
 }
 
 module.exports = {
   connectRabbit,
-  publishOrderCreated
+  getChannel
 }

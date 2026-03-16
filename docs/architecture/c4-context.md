@@ -9,19 +9,17 @@ arquitetura, sem detalhar os microsserviços internos.
 ```mermaid
 flowchart LR
 
-User[Usuário]
+User((Usuário))
 
 Frontend[Aplicação Web]
 
 System[Sistema de Processamento de Pedidos]
 
-PaymentExt[Serviço Externo de Pagamento]
+PaymentExt[[Pagamento<br>Sistema Externo]]
 
 User --> Frontend
 
 Frontend --> System
 
 System --> PaymentExt
-
-System --> Frontend
 ```

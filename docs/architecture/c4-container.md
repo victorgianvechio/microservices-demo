@@ -5,7 +5,11 @@ Este diagrama mostra os principais containers do sistema e como eles se comunica
 ```mermaid
 flowchart LR
 
-User[Usuário]
+User((Usuário))
+
+PaymentExt[[Pagamento<br>Sistema Externo]]
+
+subgraph Sistema de Processamento de Pedidos
 
 Frontend[Frontend<br>Vue3 + Quasar]
 
@@ -13,23 +17,27 @@ APISvc[API Service<br>Node.js + Express]
 
 OrderSvc[Order Service<br>Node.js Worker]
 
+Rabbit[(RabbitMQ<br>Message Broker)]
+
 PaymentSvc[Payment Service<br>Node.js Worker]
 
 NotificationSvc[Notification Service<br>WebSocket Server]
 
-Rabbit[(RabbitMQ)]
+end
 
 User --> Frontend
 
-Frontend --> APISvc
+Frontend -->|HTTP| APISvc
 
 APISvc --> OrderSvc
 
-OrderSvc --> Rabbit
-PaymentSvc --> Rabbit
+OrderSvc -->|OrderCreated| Rabbit
+PaymentSvc -->|PaymentApproved| Rabbit
 
-Rabbit --> PaymentSvc
-Rabbit --> NotificationSvc
+Rabbit -->|OrderCreated| PaymentSvc
+Rabbit -->|PaymentApproved| NotificationSvc
 
-NotificationSvc --> Frontend
+Frontend <-->|WebSocket| NotificationSvc
+
+PaymentSvc --> PaymentExt
 ```

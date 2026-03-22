@@ -3,7 +3,7 @@ const { publishOrderCreated } = require("../messaging/orderEventPublisher")
 
 let orderId = 1
 
-function createOrder() {
+function createOrder(correlationId) {
 
   const order = {
     id: orderId++,
@@ -12,9 +12,9 @@ function createOrder() {
 
   orderRepository.create(order)
 
-  console.log("Pedido criado:", order)
+  console.log(`[${correlationId}] - Pedido criado:`, order)
 
-  publishOrderCreated(order)
+  publishOrderCreated(order, correlationId)
 
   return order
 }

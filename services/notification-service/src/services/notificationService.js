@@ -1,7 +1,6 @@
 const notificationRepository = require("../repositories/notificationRepository")
 
 function processPaymentApproved(event) {
-
   const notification = {
     message: "Pagamento aprovado!",
     orderId: event.orderId

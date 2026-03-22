@@ -2,7 +2,6 @@ const { getChannel } = require("./rabbitConnection")
 const notificationController = require("../controllers/notificationController")
 
 async function startConsumer(io) {
-
   const channel = getChannel()
 
   const queue = "payment_approved"
@@ -10,6 +9,7 @@ async function startConsumer(io) {
   await channel.assertQueue(queue)
 
   channel.consume(queue, (msg) => {
+    if (!msg) return
 
     const event = JSON.parse(msg.content.toString())
 

@@ -12,21 +12,24 @@ app.use(cors())
 const server = http.createServer(app)
 
 const io = new Server(server, {
+  path: "/socket.io",
   cors: {
     origin: "*"
   }
 })
 
-io.on("connection", () => {
-  console.log("Frontend conectado ao websocket")
+io.on("connection", (socket) => {
+  console.log("Frontend conectado ao websocket:", socket.id)
+})
+
+// 🔥 rota de teste (pra garantir que o serviço responde HTTP)
+app.get("/health", (req, res) => {
+  res.send("OK")
 })
 
 server.listen(3002, async () => {
-
   await connectRabbit()
-
   await startConsumer(io)
 
   console.log("Notification-service rodando na porta 3002")
-
 })

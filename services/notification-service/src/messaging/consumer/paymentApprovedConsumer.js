@@ -13,7 +13,10 @@ async function startConsumer(io) {
 
     const event = JSON.parse(msg.content.toString())
 
-    console.log("Evento recebido:", event)
+    const correlationId =
+      msg.properties.headers?.["x-correlation-id"] || "no-correlation-id"
+
+    console.log(`[${correlationId}] - Evento recebido:`, event)
 
     notificationController.handlePaymentApproved(event, io)
 

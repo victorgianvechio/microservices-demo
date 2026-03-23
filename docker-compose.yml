@@ -10,11 +10,11 @@ services:
     networks:
       - microservices-net
 
-  api-service:
-    container_name: api-service
-    build: ./services/api-service
+  api-gateway:
+    container_name: api-gateway
+    build: ./services/api-gateway
     ports:
-      - "3000:3000"
+      - "3003:3003"
     depends_on:
       - rabbitmq
     restart: always
@@ -28,6 +28,7 @@ services:
       - "3001:3001"
     depends_on:
       - rabbitmq
+      - api-gateway
     restart: always
     networks:
       - microservices-net
@@ -37,6 +38,8 @@ services:
     build: ./services/payment-service
     depends_on:
       - rabbitmq
+      - api-gateway
+      - order-service
     restart: always
     networks:
       - microservices-net
@@ -48,6 +51,9 @@ services:
       - "3002:3002"
     depends_on:
       - rabbitmq
+      - api-gateway
+      - order-service
+      - payment-service
     restart: always
     networks:
       - microservices-net
@@ -61,7 +67,8 @@ services:
       - ./frontend:/app
       - /app/node_modules
     depends_on:
-      - api-service
+      - api-gateway
+      - notification-service
     networks:
       - microservices-net
 

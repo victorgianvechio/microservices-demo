@@ -28,7 +28,6 @@ services:
       - "3001:3001"
     depends_on:
       - rabbitmq
-      - api-gateway
     restart: always
     networks:
       - microservices-net
@@ -38,8 +37,6 @@ services:
     build: ./services/payment-service
     depends_on:
       - rabbitmq
-      - api-gateway
-      - order-service
     restart: always
     networks:
       - microservices-net
@@ -51,9 +48,17 @@ services:
       - "3002:3002"
     depends_on:
       - rabbitmq
-      - api-gateway
-      - order-service
-      - payment-service
+    restart: always
+    networks:
+      - microservices-net
+
+  log-service:
+    container_name: log-service
+    build: ./services/log-service
+    ports:
+      - "3004:3004"
+    depends_on:
+      - rabbitmq
     restart: always
     networks:
       - microservices-net

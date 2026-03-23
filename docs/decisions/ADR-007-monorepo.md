@@ -26,11 +26,10 @@ permitindo separação lógica enquanto mantém uma visão unificada do sistema.
 
 Estrutura simplificada do repositório:
 
-- api-service
+- api-gateway
 - order-service
 - payment-service
 - notification-service
-- api-gateway
 - frontend
 
 ## Consequências

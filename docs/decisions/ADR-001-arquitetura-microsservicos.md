@@ -22,11 +22,10 @@ do sistema em serviços independentes.
 
 Os principais serviços definidos são:
 
-- api-service
+- api-gateway
 - order-service
 - payment-service
 - notification-service
-- api-gateway
 
 Cada serviço possui sua própria lógica de negócio e se comunica com os demais
 por meio de mensageria assíncrona.

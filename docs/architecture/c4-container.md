@@ -13,7 +13,7 @@ subgraph Sistema de Processamento de Pedidos
 
 Frontend[Frontend<br>Vue3 + Quasar]
 
-APISvc[API Service<br>Node.js + Express]
+APIGateway[API Gateway<br>Node.js + Express]
 
 OrderSvc[Order Service<br>Node.js Worker]
 
@@ -27,9 +27,9 @@ end
 
 User --> Frontend
 
-Frontend -->|HTTP| APISvc
+Frontend -->|HTTP| APIGateway
 
-APISvc --> OrderSvc
+APIGateway --> OrderSvc
 
 OrderSvc -->|OrderCreated| Rabbit
 PaymentSvc -->|PaymentApproved| Rabbit

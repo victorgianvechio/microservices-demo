@@ -8,10 +8,11 @@ O objetivo é explicar a organização interna do serviço.
 ```mermaid
 flowchart LR
 
-Client[API Service]
+APIGateway[API Gateway]
 
-Rabbit[(RabbitMQ)]
-DB[(Order Database)]
+Rabbit[(RabbitMQ<br>Message Broker)]
+
+DB[(Order Database<br>PostgreSQL)]
 
 subgraph Order Service
 
@@ -25,7 +26,7 @@ Publisher[Order Event Publisher]
 
 end
 
-Client --> Controller
+APIGateway --> Controller
 Controller --> Service
 
 Service --> Repository

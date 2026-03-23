@@ -5,7 +5,6 @@ const {
 
 async function start() {
   await connectRabbit()
-
   await startConsumer()
 
   console.log("Payment-service aguardando eventos...")

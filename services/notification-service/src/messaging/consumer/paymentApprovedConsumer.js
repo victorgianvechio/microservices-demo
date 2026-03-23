@@ -4,9 +4,11 @@ const notificationController = require("../../controllers/notificationController
 async function startConsumer(io) {
   const channel = getChannel()
 
-  const queue = "payment_approved"
+  const queue = "notification_queue"
 
-  await channel.assertQueue(queue)
+  await channel.assertQueue(queue, { durable: false })
+
+  await channel.bindQueue(queue, "payment_events", "")
 
   channel.consume(queue, (msg) => {
     if (!msg) return
@@ -14,11 +16,16 @@ async function startConsumer(io) {
     const event = JSON.parse(msg.content.toString())
 
     const correlationId =
-      msg.properties.headers?.["x-correlation-id"] || "no-correlation-id"
+      msg.properties.headers?.["x-correlation-id"] || "no-id"
 
-    console.log(`[${correlationId}] - Evento recebido:`, event)
+    console.log(`[${correlationId}] Evento recebido:`, event)
 
-    notificationController.handlePaymentApproved(event, correlationId, io)
+    // 🔥 PASSANDO IO CORRETAMENTE
+    notificationController.handlePaymentApproved(
+      event,
+      correlationId,
+      io
+    )
 
     channel.ack(msg)
   })

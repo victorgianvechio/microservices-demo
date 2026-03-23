@@ -12,7 +12,7 @@ function createOrder(correlationId) {
 
   orderRepository.create(order)
 
-  console.log(`[${correlationId}] - Pedido criado:`, order)
+  console.log(`[${correlationId}] Pedido criado:`, order)
 
   publishOrderCreated(order, correlationId)
 

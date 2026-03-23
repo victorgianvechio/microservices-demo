@@ -3,18 +3,19 @@ const { getChannel } = require("../rabbitConnection")
 function publishPaymentApproved(event, correlationId) {
   const channel = getChannel()
 
-  channel.sendToQueue(
-    "payment_approved",
+  channel.publish(
+    "payment_events",
+    "",
     Buffer.from(JSON.stringify(event)),
     {
       headers: {
-        "x-correlation-id": correlationId // propagando
+        "x-correlation-id": correlationId
       }
     }
   )
 
   console.log(
-    `[${correlationId}] - Evento payment_approved publicado:`,
+    `[${correlationId}] Evento payment_approved publicado:`,
     event
   )
 }

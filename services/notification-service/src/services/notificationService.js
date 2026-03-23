@@ -1,7 +1,6 @@
 const notificationRepository = require("../repositories/notificationRepository")
 
 function processPaymentApproved(event, correlationId) {
-  
   const notification = {
     message: "Pagamento aprovado!",
     orderId: event.orderId
@@ -9,7 +8,10 @@ function processPaymentApproved(event, correlationId) {
 
   notificationRepository.create(notification)
 
-  console.log(`[${correlationId}] - Notificação salva:`, notification)
+  console.log(
+    `[${correlationId}] Notificação salva:`,
+    notification
+  )
 
   return notification
 }

@@ -3,9 +3,8 @@ const {
 } = require("../messaging/publishers/paymentApprovedPublisher")
 
 async function processPayment(order, correlationId) {
-  console.log(`[${correlationId}] - Processando pagamento...`)
+  console.log(`[${correlationId}] Processando pagamento...`)
 
-  // simular processamento
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
   const event = {

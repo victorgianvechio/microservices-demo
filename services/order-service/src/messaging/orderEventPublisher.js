@@ -1,16 +1,12 @@
 const { getChannel } = require("./rabbitConnection")
 
-async function publishOrderCreated(order, correlationId) {
-
+function publishOrderCreated(event, correlationId) {
   const channel = getChannel()
 
-  const queue = "order_created"
-
-  await channel.assertQueue(queue)
-
-  channel.sendToQueue(
-    queue,
-    Buffer.from(JSON.stringify(order)),
+  channel.publish(
+    "order_events",
+    "",
+    Buffer.from(JSON.stringify(event)),
     {
       headers: {
         "x-correlation-id": correlationId
@@ -18,7 +14,10 @@ async function publishOrderCreated(order, correlationId) {
     }
   )
 
-  console.log(`[${correlationId}] - Evento order_created publicado:`, order)
+  console.log(
+    `[${correlationId}] Evento order_created publicado:`,
+    event
+  )
 }
 
 module.exports = {

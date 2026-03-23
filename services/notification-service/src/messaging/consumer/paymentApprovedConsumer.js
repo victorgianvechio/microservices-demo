@@ -18,7 +18,7 @@ async function startConsumer(io) {
 
     console.log(`[${correlationId}] - Evento recebido:`, event)
 
-    notificationController.handlePaymentApproved(event, io)
+    notificationController.handlePaymentApproved(event, correlationId, io)
 
     channel.ack(msg)
   })

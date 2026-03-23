@@ -37,12 +37,12 @@ async function startConsumer() {
 
       logs.push(log)
 
-      console.log(`[${correlationId}] LOG EVENTO:`, event)
+      console.log(`[${correlationId}] Log evento:`, event)
 
       channel.ack(msg)
     })
 
-    console.log("📥 Log-service escutando eventos...")
+    console.log("Log-service escutando eventos...")
   })
 }
 

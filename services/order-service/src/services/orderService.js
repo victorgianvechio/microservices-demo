@@ -1,5 +1,5 @@
 const orderRepository = require("../repositories/orderRepository")
-const { publishOrderCreated } = require("../messaging/orderEventPublisher")
+const { publishOrderCreated } = require("../messaging/publishers/orderCreatedPublisher")
 
 let orderId = 1
 

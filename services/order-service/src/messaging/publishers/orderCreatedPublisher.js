@@ -1,4 +1,4 @@
-const { getChannel } = require("./rabbitConnection")
+const { getChannel } = require("../rabbitConnection")
 
 function publishOrderCreated(event, correlationId) {
   const channel = getChannel()

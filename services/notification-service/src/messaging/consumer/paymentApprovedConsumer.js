@@ -1,5 +1,5 @@
-const { getChannel } = require("./rabbitConnection")
-const notificationController = require("../controllers/notificationController")
+const { getChannel } = require("../rabbitConnection")
+const notificationController = require("../../controllers/notificationController")
 
 async function startConsumer(io) {
   const channel = getChannel()

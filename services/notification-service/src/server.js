@@ -4,7 +4,7 @@ const cors = require("cors")
 const { Server } = require("socket.io")
 
 const { connectRabbit } = require("./messaging/rabbitConnection")
-const { startConsumer } = require("./messaging/paymentApprovedConsumer")
+const { startConsumer } = require("./messaging/consumer/paymentApprovedConsumer")
 
 const app = express()
 app.use(cors())
